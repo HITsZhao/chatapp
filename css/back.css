@@ -1,0 +1,39 @@
+
+html,body{height:100%;}
+
+#main_container{
+    height: 100%;
+}
+
+.row{
+    height: 100%;
+}
+
+.sidebar{
+    background-color: #255625;
+}
+
+.main{
+    background-color: #262626;
+}
+
+#user_list{
+    height: 100%;
+    font-size: medium;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+#messages_list{
+    height: 100%;
+    font-size: small;
+    color: whitesmoke;
+}
+
+#message{
+    color: #262626;
+    font-weight: 600;
+    margin: 3px;
+}
+
+

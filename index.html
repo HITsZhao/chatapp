@@ -16,43 +16,47 @@
     <![endif]-->
 </head>
 <body>
-    <nav id="bottom_nav" class="navbar navbar-default navbar-fixed-bottom">
-        <div id="bottom_container" class="container">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input id="m" type="text" class="form-control" placeholder="input message here">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-send"></span>send</button>
-            </form>
-        </div>
-    </nav>
-
-    <div id="main_container" class="container-fluid">
-        <div class="row">
-            <div id="user_list" class="col-sm-3 col-md-2 sidebar">
-                用户列表
-            </div>
-            <div id="messages_list" class="col-sm-9 col-md-10 main">
-                消息列表
-              <ul id="messages" class="list-group"></ul>
-            </div>
-        </div>
+<div id="loginbox">
+  <div style="width:260px;margin:200px auto;">
+    请先输入你在聊天室的昵称
+    <br/>
+    <br/>
+    <div class="form-group">
+      <input type="text" class="form-control" style="width:180px;" placeholder="请输入用户名" id="username" name="username" />
+      <input class="btn btn-default" type="submit" style="width:50px;" value="提交" onclick="CHAT.usernameSubmit();"/>
     </div>
+  </div>
+</div>
+<div id="chatbox" style="display:none;">
+  <div style="background:#333333;height: 28px; width: 100%;font-size:12px;">
+    <div style="line-height: 28px;color:#fff;">
+      <span style="text-align:left;margin-left:10px;"><span class="glyphicon glyphicon-comment"></span> Websocket多人聊天室</span>
+                    <span style="float:right; margin-right:10px;"><span class="glyphicon glyphicon-user"> </span><span id="showusername"></span> |
+					<a href="javascript:void(0);" onclick="CHAT.logout()" style="color:#fff;">退出</a></span>
+    </div>
+  </div>
+  <div id="doc">
+    <div id="chat">
+      <div id="message" class="message">
+        <div id="onlinecount" style="background:#EFEFF4; font-size:12px; margin-top:10px; margin-left:10px; color:#666;">
+        </div>
+      </div>
+      <div class="input-box">
+        <div class="input">
+          <input type="text" maxlength="140" placeholder="请输入聊天内容，按Ctrl+Enter发送" id="content" name="content">
+        </div>
+        <div class="action">
+          <button type="button" id="mjr_send" onclick="CHAT.submit();"><span class="glyphicon glyphicon-send"></span>发送</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script>
-      var socket = io();
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li id="message" class="list-group-item">').text(msg));
-      });
-    </script>
+    <script src="js/chatClient.js"></script>
 </body>
 </html>
